@@ -18,4 +18,5 @@ sysbench fileio cleanup >> $name
 
 second_name="@$name"
 
-curl -F 'file=$second_name' http://54.198.238.38:3000/file
+# to fix name not working for now
+curl -F 'file=$second_name' http://54.198.238.38/file
