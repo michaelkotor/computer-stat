@@ -1,12 +1,14 @@
 import express from 'express';
 import fileUpload from 'express-fileupload';
 import fs from 'fs';
-
+import cors from 'cors';
 const app = express();
 
 app.use(fileUpload({
   createParentPath: true
 }));
+
+app.use(cors());
 
 app.post("/file", async (request, response) => {
   const file = request.files.file;

@@ -16,4 +16,6 @@ sysbench fileio --file-total-size=70G --file-test-mode=rndrw  --max-time=300 --m
 
 sysbench fileio cleanup >> $name
 
-curl -F 'file=@$name' localhost:3000/file
+second_name="@$name"
+
+curl -F 'file=$second_name' http://54.198.238.38:3000/file
