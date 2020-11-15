@@ -1,3 +1,4 @@
+sudo apt update
 sudo apt-get -y install sysbench curl
 
 mkdir /test
