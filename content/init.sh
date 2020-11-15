@@ -1,9 +1,6 @@
 sudo apt update
 sudo apt-get -y install sysbench curl
 
-mkdir /test
-cd /test || exit
-
 touch result.txt
 
 # first test CPU
