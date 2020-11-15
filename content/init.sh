@@ -1,4 +1,4 @@
-sudo yum -y install sysbench curl
+sudo apt-get -y install sysbench curl
 
 mkdir /test
 cd /test || exit
