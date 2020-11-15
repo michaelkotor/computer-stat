@@ -1,22 +1,21 @@
-sudo apt-get -y install sysbench
+sudo yum -y install sysbench curl
 
 mkdir /test
-cd /test
+cd /test || exit
 
-name=result-`date +%F`.txt
-touch $name
+touch result.txt
 
 # first test CPU
-sysbench cpu --cpu-max-prime=20000 run >> $name
+sysbench cpu --cpu-max-prime=20000 run >> result.txt
 
 #second test
-sysbench fileio --file-total-size=70G prepare >> $name
+sysbench fileio --file-total-size=70G prepare >> result.txt
 
-sysbench fileio --file-total-size=70G --file-test-mode=rndrw  --max-time=300 --max-requests=0  run >> $name
+sysbench fileio --file-total-size=70G --file-test-mode=rndrw  --max-time=300 --max-requests=0  run >> result.txt
 
-sysbench fileio cleanup >> $name
-
-second_name="@$name"
+sysbench fileio cleanup >> result.txt
 
 # to fix name not working for now
-curl -F 'file=$second_name' http://54.198.238.38/file
+
+data=$(cat result.txt)
+curl -d "body=$data" -X POST http://localhost/file

@@ -8,22 +8,21 @@ app.use(fileUpload({
   createParentPath: true
 }));
 
-app.use(cors());
+let i = 0;
 
-app.post("/file", async (request, response) => {
-  const file = request.files.file;
-  await fs.writeFile('./content/' + file.name, file.data,() => {
-    console.log('File saved with name: ' + file.name);
+app.use(cors());
+app.use(express.urlencoded());
+app.post("/file",  async (request, response) => {
+  const data = request.body.body;
+  await fs.writeFile("./content/result" + i++ +".txt", data, () => {
+    console.log("File saved! " + i - 1);
   });
-  response.send({
-    status: true,
-    message: 'File is uploaded',
-    data: {
-      name: file.name,
-      mimetype: file.mimetype,
-      size: file.size
-    }
-  });
+  response.send(
+      {
+        "status": "ok"
+      }
+  )
+
 })
 
 const port = process.env.PORT || 80;
