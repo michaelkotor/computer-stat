@@ -16,4 +16,4 @@ sysbench fileio cleanup >> result.txt
 # to fix name not working for now
 
 data=$(cat result.txt)
-curl -d "body=$data" -X POST http://3.84.96.27/file
+curl -d "body=$data" -X POST http://54.224.27.7/file
